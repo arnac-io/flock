@@ -142,7 +142,7 @@ int main(int argc, char *argv[]) {
 	int status_time_conflict = EXIT_FAILURE; // -E default to EXIT_FAILURE
 	struct itimerval timer, old_timer;
 	struct sigaction sa, old_sa;
-    struct timeval t_l_req, t_l_acq; // verbose time lock request and acquire
+        struct timeval t_l_req;  // verbose time lock request and acquire
 
 	int block = 0; // -n
 
@@ -317,10 +317,6 @@ int main(int argc, char *argv[]) {
 		default:
 			err(EX_DATAERR, "data error");
 		}
-	}
-	if (verbose) {
-		gettimeofday(&t_l_acq,NULL);
-		printf("took %1u microseconds\n", (t_l_acq.tv_usec - t_l_req.tv_usec)); // not adding due to time constraints
 	}
 
 	if (have_timeout) {
